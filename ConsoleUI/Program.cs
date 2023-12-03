@@ -1,6 +1,8 @@
 ﻿using Business.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ConsoleUI
 {
@@ -28,10 +30,22 @@ namespace ConsoleUI
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetProductDetails() )
+            var result = productManager.GetProductDetails();
+
+            if (result.Success== true)
             {
-                Console.WriteLine(product.ProductName + "/" + product.CategoryName  );
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+          
+
+           
         }
     }
 }

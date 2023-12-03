@@ -30,9 +30,6 @@ namespace Business.Concrete
             return _categoryDal.Get(c => c.CategoryId == categoryıd);
         }
 
-        List<Category> ICategoryService.GetById(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }
